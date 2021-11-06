@@ -1,0 +1,217 @@
+/* variables */ 
+$pinkRed: #FF006E
+$darkBlue: #001F73
+$white: #ffffff
+$greyBorder: #E2E2E2
+/* Main styles */ 
+*
+	padding: 0
+	margin: 0
+	box-sizing: border-box
+	font-family: 'Gotham'
+
+h1
+	font-size: 2rem
+.container
+	margin: 0 auto
+	max-width: 1290px
+.hidden
+	display: none
+@media screen and (max-width: 1199px)
+	h1
+		font-size: 24px
+
+// Hero
+.hero
+	background: url('../img/hero-bg.png')
+	background-size: cover
+	height: 300px
+	padding: 0 !important
+	background-repeat: no-repeat
+	display: flex
+	&__container
+		align-items: center
+		max-width: 1290px
+		width: 100%
+		justify-content: center !important
+		position: relative
+	&__bg-element
+		position: absolute
+		max-width: 682px
+		object-fit: contain
+		left: 0
+		height: 100%
+	&__title
+		position: relative
+		z-index: 2
+		text-align: center
+		font-weight: 900
+		font-size: 34px
+		text-transform: uppercase
+
+@media screen and (max-width: 768px)
+	.hero
+		height: 200px
+// section
+
+.section
+	&__padding
+		padding: 100px 0
+	&__title
+		max-width: 1290px
+		margin: 0 auto !important
+		display: flex !important
+
+// Personal
+
+.personal
+
+	&__container
+		display: flex
+		padding: 133px 0px 64px
+		border-bottom: 1px solid #E2E2E2
+	&__photo
+		width: 394px
+		height: 369px
+		object-fit: cover
+		margin-right: 40px
+	&__block-info
+		color: $darkBlue
+
+	&__title
+		text-transform: uppercase
+		font-weight: 900
+		font-size: 32px
+		margin-bottom: 32px
+	&__subtitle
+		text-transform: uppercase
+		font-weight: normal
+		font-size: 24px
+		width: 450px
+	&__document
+		text-transform: uppercase
+		font-weight: 700
+		font-size: 24px
+
+	&__text
+		margin: 40px 0px 10px
+		font-size: 16px
+	&__contact
+		font-size: 16px
+		margin-bottom: 30px
+	&__button
+		padding: 12px 32px
+		display: flex
+		white-space: nowrap
+		font-size: 18px
+		font-weight: 500
+		text-transform: uppercase
+		font-weight: 700
+		color: #fff
+		background-color: $pinkRed
+		align-items: center
+		img
+			display: flex
+			width: 32px
+			height: 32px
+			border-radius: 50%
+			border: 2px solid #fff
+			padding: 7px
+			margin-left: 30px
+
+@media screen and (max-width: 992px)
+	.personal
+		&__container
+			padding: 30px 0
+			flex-direction: column
+		&__photo
+			width: 100%
+			height: 500px
+			object-position: top
+			margin-bottom: 40px
+@media screen and (max-width: 576px)
+	.personal
+		&__photo
+			height: 300px
+		&__title
+			font-size: 18px
+			margin-bottom: 20px
+		&__subtitle
+			font-size: 16px
+			width: auto
+		&__document
+			font-size: 16px
+// Document
+
+.document
+	margin-top: 54px
+	margin-bottom: 122px
+	&__row
+		display: flex
+		flex-direction: row
+		gap: 40px
+		&--bordered
+			padding-bottom: 58px
+			border-bottom: 1px solid #E2E2E2
+			margin-bottom: 54px
+
+	&__column
+		display: flex
+		flex-direction: column
+		width: 100%
+		&--bordered
+			padding-bottom: 54px
+			border-bottom: 1px solid #E2E2E2
+			margin-bottom: 54px
+
+	&__title
+		color: $darkBlue
+		margin-left: 65px
+		margin-bottom: 40px
+		font-size: 32px
+		font-weight: 900
+		text-transform: uppercase
+	&__text
+		color: $darkBlue
+		&--solo
+			padding-left: 65px
+.document-item
+	color: $darkBlue
+	display: flex
+	margin-bottom: 15px
+	&__img
+		width: 37px
+		height: 47px
+		margin-right: 28px
+	&__info
+	&__title
+		font-weight: 700
+
+@media screen and (max-width: 992px)
+	.document
+		margin-top: 30px
+		margin-bottom: 80px
+		&__row
+			flex-direction: column
+@media screen and (max-width: 576px)
+	.document
+		&__row
+			gap: 20px
+		&--bordered
+			padding-bottom: 30px
+			margin-bottom: 30px
+
+		&__column
+			&--bordered
+				padding-bottom: 30px
+				margin-bottom: 30px
+
+		&__title
+			margin-bottom: 20px
+			font-size: 18px
+		&__text
+			font-size: 14px
+
+	.document-item
+		&__title
+			font-size: 14px

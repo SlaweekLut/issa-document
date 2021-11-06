@@ -1,0 +1,103 @@
+/*generated with Input range slider CSS style generator (version 20210711)
+https://toughengineer.github.io/demo/slider-styler*/
+input[type=range].styled-slider {
+  height: 0;
+  -webkit-appearance: none;
+}
+
+/*progress support*/
+input[type=range].styled-slider.slider-progress {
+  --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--value) - var(--min)) / var(--range));
+  --sx: calc(0.5 * 24px + var(--ratio) * (100% - 24px));
+}
+
+input[type=range].styled-slider:focus {
+  outline: none;
+}
+
+/*webkit*/
+input[type=range].styled-slider::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  background: #001F73;
+  border: 7px solid #FF006E;
+  box-shadow: 0 0 2px black;
+  margin-top: calc(3px * 0.5 - max(24px * 0.5,7px));
+  -webkit-appearance: none;
+}
+
+input[type=range].styled-slider::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 0;
+  background: #fff;
+  border: none;
+  box-shadow: none;
+}
+input[type=range].styled-slider.slider-progress::-webkit-slider-runnable-track {
+  background: linear-gradient(#FF006E,#FF006E) 0/var(--sx) 100% no-repeat, #fff;
+}
+
+/*mozilla*/
+input[type=range].styled-slider::-moz-range-thumb {
+  width: max(calc(24px - 7px - 7px),0px);
+  height: max(calc(24px - 7px - 7px),0px);
+  border-radius: 100px;
+  background: #001F73;
+  border: 7px solid #FF006E;
+  box-shadow: 0 0 2px black;
+}
+
+input[type=range].styled-slider::-moz-range-track {
+  height: 3px;
+  border-radius: 0;
+  background: #fff;
+  border: none;
+  box-shadow: none;
+}
+
+input[type=range].styled-slider.slider-progress::-moz-range-track {
+  background: linear-gradient(#FF006E,#FF006E) 0/var(--sx) 100% no-repeat, #fff;
+}
+
+/*ms*/
+input[type=range].styled-slider::-ms-fill-upper {
+  background: transparent;
+  border-color: transparent;
+}
+
+input[type=range].styled-slider::-ms-fill-lower {
+  background: transparent;
+  border-color: transparent;
+}
+
+input[type=range].styled-slider::-ms-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  background: #001F73;
+  border: 7px solid #FF006E;
+  box-shadow: 0 0 2px black;
+  margin-top: 0;
+  box-sizing: border-box;
+}
+
+input[type=range].styled-slider::-ms-track {
+  height: 3px;
+  border-radius: 0;
+  background: #fff;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+input[type=range].styled-slider.slider-progress::-ms-fill-lower {
+  height: 3px;
+  border-radius: 0px 0 0 0px;
+  margin: -undefined 0 -undefined -undefined;
+  background: #FF006E;
+  border: none;
+  border-right-width: 0;
+}
+
