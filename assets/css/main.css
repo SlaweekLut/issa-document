@@ -263,6 +263,7 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 .document-item__img {
@@ -275,9 +276,12 @@ h1 {
   font-weight: 700;
 }
 
-.document-item:hover {
-  cursor: pointer;
-  text-decoration: underline;
+.document-item:hover .document-item__title {
+  -webkit-text-decoration-color: #FF006E;
+          text-decoration-color: #FF006E;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  color: #FF006E;
 }
 
 @media screen and (max-width: 992px) {
