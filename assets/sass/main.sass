@@ -43,7 +43,6 @@ h1
 		height: 100%
 	&__title
 		position: relative
-		z-index: 2
 		text-align: center
 		font-weight: 900
 		font-size: 34px
@@ -178,6 +177,7 @@ h1
 .document-item
 	color: $darkBlue
 	display: flex
+	align-items: center
 	margin-bottom: 15px
 	&__img
 		width: 37px
@@ -186,7 +186,9 @@ h1
 	&__info
 	&__title
 		font-weight: 700
-
+	&:hover
+		cursor: pointer
+		text-decoration: underline
 @media screen and (max-width: 992px)
 	.document
 		margin-top: 30px

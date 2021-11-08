@@ -1,186 +1,216 @@
-import Swiper from 'https://unpkg.com/swiper@7/swiper-bundle.esm.browser.min.js';
+$(document).ready(function () {
+	// бургер
+	$(".c-hamburger").click(function (e) {
+		e.preventDefault();
+		// изменение иконки на крест
+		$.contains("is-active") === true;
+		$(this).toggleClass("is-active");
+		$(".burger__content").toggleClass("burger__content_active");
+	});
+	//Анимация мемню
+	/*$('.dropdown').hover(function() {
+		$(this).children('.header__cards').fadeIn();
+		$(this).children('.header__cards').css('display', 'flex')
+	});
+	$(document).on("mouseout", ".dropdown", function() {
+		$(this).children('.header__cards').hide();
+	});*/
 
+	$('.dropdown').hover(function () {
+		clearTimeout($.data(this, 'timer'));
+		$('ul', this).stop(true, true).slideDown(200);
+		$(this).children('.header__cards').css('display', 'flex');
+	}, function () {
+		$.data(this, 'timer', setTimeout($.proxy(function () {
+			$('ul', this).stop(true, true).slideUp(200);
+		}, this), 100));
+	});
 
-const swiperLicense = new Swiper('.license__slider2', {
-	direction: 'horizontal',
-	loop: true,
-	draggable: true,
+	// кнопка выбора языка
+	var lang = $(".burger__lang");
+	lang.click(function () {
+		var textBtn = $(this).text();
+		if (textBtn == "ENG") {
+			textBtn = $(this).text("RUS");
+		} else if (textBtn == "RUS") {
+			textBtn = $(this).text("ENG");
+		}
+		// window.location = 'http://сайт.com' + lang.options[lang.options.selectedIndex].value + 'index.html'
+	});
 
-	navigation: {
-		nextEl: '.slick-next',
-		prevEl: '.slick-prev',
+	// кнопка поиска
+	$(".search__btn_open").click(function () {
+		if ($(".search__block_visible").is(":visible")) {
+			$(this).css("backgroundImage", "url(img/search-icn.svg)");
+			$(".search__block").removeClass("search__block_visible");
+		} else {
+			$(this).css("backgroundImage", "url(img/search-close.svg)");
+			$(".search__block").addClass("search__block_visible");
+		}
+	});
+
+	// раскрывающееся меню в бургере
+	$(".dropdown-mobile__btn").click(function () {
+		var $dropMenu = $(this).parent().find(".dropdown-mobile__content");
+		if ($dropMenu.is(":visible")) {
+			$(this).removeClass("icon-mobile_rotate");
+			$dropMenu.css("display", "none");
+		} else {
+			$(this).addClass("icon-mobile_rotate");
+			$dropMenu.css("display", "flex");
+		}
+	});
+
+	// функционал таба
+	var item;
+	var tab = $(".service__tab");
+	//tab.hide().filter(":first").show();
+
+	// Клики по вкладкам.
+	$(".service__btn")
+		.click(function () {
+			//tab.hide();
+			//tab.filter(this.hash).show();
+			$(".service__btn").removeClass("active");
+			$(this).addClass("active");
+			return false;
+		})
+		.filter(":first")
+		.click();
+	/*
+	if ($(window).width() > 576) {
+		// кнопка показать еще (показать по три)
+		item = { totalPageCount: $(".service__card:visible").length };
+		x = 6;
+		console.log(item);
+		$(".service__other").click(function () {
+			console.log($(this).closest());
+			x = x + 3 >= item.totalPageCount ? x + 3 : item.totalPageCount;
+			$(".service__card:lt(" + x + ")").show();
+		});
+	}*/
+
+	item = { totalPageCount: $(".service__card:visible").length };
+	if (document.body.clientWidth < 769) {
+		x = 3;
+	} else {
+		x = 6;
 	}
-})
-
-const swiperInfo = new Swiper('.mobile-info', {
-	direction: 'horizontal',
-	loop: true,
-	draggable: true,
-
-	navigation: {
-		nextEl: '.slick-next',
-		prevEl: '.slick-prev',
+	$(".service__other").click(function () {
+		var all = $('.service__card').length;
+		x = x + 3 >= item.totalPageCount ? x + 3 : item.totalPageCount;
+		$(".service__card:lt(" + x + ")").show();
+		if (all <= x) {
+			$(".service__other").hide();
+		}
+	});
+	// слайдер лицензии и сертификаты
+	if ($(window).width() <= 576) {
+		// вкладка таба Все
+		$(".service-all__slider").slick({
+			slidesToScroll: 1,
+			slidesToShow: 1,
+			arrows: true,
+			dots: false,
+		});
+		// вкладка таба Облако
+		$(".service-cloud__slider").slick({
+			slidesToScroll: 1,
+			slidesToShow: 1,
+			arrows: true,
+			dots: false,
+		});
+		// вкладка таба ЦОД
+		$(".service-coda__slider").slick({
+			slidesToScroll: 1,
+			slidesToShow: 1,
+			arrows: true,
+			dots: false,
+		});
+		// вкладка таба Инфобезопасность
+		$(".service-infosecurity__slider").slick({
+			slidesToScroll: 1,
+			slidesToShow: 1,
+			arrows: true,
+			dots: false,
+		});
+		// вкладка таба Сетевые услуги
+		$(".service-network__slider").slick({
+			slidesToScroll: 1,
+			slidesToShow: 1,
+			arrows: true,
+			dots: false,
+		});
+		// Слайдер лицензии и сертификаты
+		$(".license__slider1").slick({
+			slidesToScroll: 1,
+			slidesToShow: 1,
+			arrows: true,
+			dots: false,
+		});
+		$(".license__slider2").slick({
+			slidesToScroll: 1,
+			slidesToShow: 1,
+			arrows: true,
+			dots: false,
+		});
+		// слайдер наши партнеры
+		$(".partners__slider").slick({
+			slidesToScroll: 1,
+			slidesToShow: 1,
+			arrows: true,
+			dots: false,
+		});
 	}
-})
 
-const swiperAdvantages = new Swiper('.advantages-product-swiper', {
-	direction: 'horizontal',
-	loop: true,
-	draggable: true,
+	// вызов модального окна Обратный звонок
+	$(".modal__btn").click(function () {
+		$(".popup-fade__callback").fadeIn();
+		return false;
+	});
+	$(".modal__btn_demo").click(function () {
+		$(".popup-fade__callback_demo").fadeIn();
+		return false;
+	});
 
-	pagination: {
-		el: '.slick-dots',
-		type: 'bullets',
-		clickable: true,
-	},
-
-	navigation: {
-		nextEl: '.slick-next',
-		prevEl: '.slick-prev',
-	}
-})
-
-const swiperBenefits = new Swiper('.benefits-second-mobile', {
-	direction: 'horizontal',
-	loop: true,
-	draggable: true,
-
-	pagination: {
-		el: '.slick-dots',
-		type: 'bullets',
-		clickable: true,
-	},
-
-	navigation: {
-		nextEl: '.slick-next',
-		prevEl: '.slick-prev',
-	}
-})
-
-// calculator
-
-let processors = document.querySelector('#processors')
-let processorsCount = document.querySelector('#processorsCount')
-let ram = document.querySelector('#ram')
-let ramCount = document.querySelector('#ramCount')
-let sas = document.querySelector('#sas')
-let sasCount = document.querySelector('#sasCount')
-let ssd = document.querySelector('#ssd')
-let ssdCount = document.querySelector('#ssdCount')
-let disk = document.querySelector('#disk')
-let diskCount = document.querySelector('#diskCount')
-let vm = document.querySelector('#vm')
-let vmCount = document.querySelector('#vmCount')
-
-let pluses = document.querySelectorAll('.calculator-block__plus')
-let minuses = document.querySelectorAll('.calculator-block__minus')
-let inputs = document.querySelectorAll('.calculator-input__input')
-let values = document.querySelectorAll('.calculator-block__count')
-let issaPrice = document.querySelector('#issaPrice')
-let baasPrice = document.querySelector('#baasPrice')
-let resultPrice = document.querySelector('#calcResult')
-
-let issa = document.querySelector('#communicativeResource')
-let baas = document.querySelector('#communicativeResourceCoping')
-let internet = document.querySelector('#communicativeResourceInternet')
-values.forEach(item => {
-	item.addEventListener('input', () => {
-		if (item.value.length > 5) {
-			item.value = item.value.slice(0, 5)
+	// Закрытие по клавише Esc.
+	$(document).keydown(function (e) {
+		if (e.keyCode === 27) {
+			e.stopPropagation();
+			$(".popup-fade__callback").fadeOut();
+			$(".popup-fade__callback_demo").fadeOut();
 		}
-		if (item.value > 10000) {
-			item.value = 10000
-		}
-	})
-})
+	});
 
-let issaWithoutDiscount = 0
-let issaWithDiscount = 0
-let baasWithoutDiscount = 0
-let baasWithDiscount = 0
-let resultCount = 0
-function inputRange(max, step, input, count, index) {
-	input.max = max
-	input.step = step
-	count.addEventListener('input', () => {
-		if (count.value <= 10) {
-			input.value = (count.value * 250)
-		} else if (count.value > 10 && count.value <= 100) {
-			input.value = (count.value * 25) + 2250
-		} else if (count.value > 100 && count.value < 1000) {
-			input.value = (count.value * 2.5) + 4500
-		} else if (count.value > 1000 && count.value <= 10000) {
-			input.value = (count.value * 0.25) + 6750
+	// Клик по фону, но не по окну.
+	$(".popup-fade__callback").click(function (e) {
+		if ($(e.target).closest(".popup").length == 0) {
+			$(this).fadeOut();
 		}
-		input.style.setProperty('--value', input.value);
-	})
-	minuses[index].addEventListener('click', () => {
-		input.value = +input.value - 250
-		input.style.setProperty('--value', input.value);
-		if (input.value <= 2500) {
-			count.value = (input.value / 250)
-		} else if (input.value > 2500 && input.value <= 4750) {
-			count.value = (input.value / 25) - 90
-		} else if (input.value > 4750 && input.value <= 7000) {
-			count.value = (input.value / 2.5) - 1800
-		} else if (input.value > 7000 && input.value <= 10000) {
-			count.value = (input.value / 0.25) - 27000
+	});
+	$(".popup-fade__callback_demo").click(function (e) {
+		if ($(e.target).closest(".popup").length == 0) {
+			$(this).fadeOut();
 		}
-	})
-	pluses[index].addEventListener('click', () => {
-		input.value = +input.value + 250
-		input.style.setProperty('--value', input.value);
-
-		if (input.value <= 2500) {
-			count.value = (input.value / 250)
-		} else if (input.value > 2500 && input.value <= 4750) {
-			count.value = (input.value / 25) - 90
-		} else if (input.value > 4750 && input.value <= 7000) {
-			count.value = (input.value / 2.5) - 1800
-		} else if (input.value > 7000 && input.value <= 10000) {
-			count.value = (input.value / 0.25) - 27000
+	});
+	// закрытие модального окна
+	$(".popup-close").click(function (e) {
+		$(".popup-fade__callback").fadeOut();
+		$(".popup-fade__callback_demo").fadeOut();
+	});
+});
+function category_list(ids, token) {
+	$.ajax({
+		url: "/service_ajax",
+		type: "post",
+		data: { service_id: ids, _token: token },
+		success: function (data) {
+			$('.service__content2').html(data);
+			if ($('.service__card').length <= 6) {
+				$(".service__other").hide();
+			} else {
+				$(".service__other").fadeIn(200);
+			}
 		}
-	})
-	input.addEventListener('input', () => {
-		if (input.value <= 2500) {
-			count.value = (input.value / 250)
-		} else if (input.value > 2500 && input.value <= 4750) {
-			count.value = (input.value / 25) - 90
-		} else if (input.value > 4750 && input.value <= 7000) {
-			count.value = (input.value / 2.5) - 1800
-		} else if (input.value > 7000 && input.value <= 10000) {
-			count.value = (input.value / 0.25) - 27000
-		}
-
-	})
-	setInterval(() => {
-
-		issaWithoutDiscount = (+processorsCount.value * 325.97) + (+ramCount.value * 233.48) + (+sasCount.value * 4.91) + (+ssdCount.value * 21.00)
-		issaWithDiscount = (+processorsCount.value * 277.07) + (+ramCount.value * 198.46) + (+sasCount.value * 4.17) + (+ssdCount.value * 17.85)
-		issaPrice.innerHTML = `
-		<p>Стоимость ${issaWithDiscount.toFixed(2)} <span class='calculator-block__price--without'>${issaWithoutDiscount.toFixed(2)}</span><span class="calculator-block__price--red">*</span> руб.</p>`
-		baasWithoutDiscount = (+diskCount.value * 1500) + (+vmCount.value * 1600)
-		baasWithDiscount = (+diskCount.value * 1275) + (+vmCount.value * 1360)
-		baasPrice.innerHTML = `
-		<p>Стоимость ${baasWithDiscount.toFixed(2)} <span class='calculator-block__price--without'>${baasWithoutDiscount.toFixed(2)}</span><span class="calculator-block__price--red">*</span> руб.</p>`
-
-		if (issa.checked && !baas.checked && !internet.checked) resultCount = issaWithDiscount
-		if (baas.checked && !issa.checked && !internet.checked) resultCount = baasWithDiscount
-		if (internet.checked && !issa.checked && !baas.checked) resultCount = 11500
-		if (issa.checked && baas.checked && !internet.checked) resultCount = issaWithDiscount + baasWithDiscount
-		if (issa.checked && !baas.checked && internet.checked) resultCount = 11500 + issaWithDiscount
-		if (baas.checked && internet.checked && !issa.checked) resultCount = baasWithDiscount + 11500
-		if (issa.checked && baas.checked && internet.checked) resultCount = issaWithDiscount + baasWithDiscount + 11500
-		if (!issa.checked && !baas.checked && !internet.checked) resultCount = 0
-		resultPrice.innerHTML = `<p>Стоимость ${resultCount.toFixed(2)} Руб.</p> `
-	}, 1);
+	});
 }
-
-inputRange(9250, 250, processors, processorsCount, 0)
-inputRange(9250, 250, ram, ramCount, 1)
-inputRange(9250, 250, sas, sasCount, 2)
-inputRange(9250, 250, ssd, ssdCount, 3)
-inputRange(9250, 250, disk, diskCount, 4)
-inputRange(9250, 250, vm, vmCount, 5)
-
-

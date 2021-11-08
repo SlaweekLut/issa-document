@@ -61,7 +61,6 @@ h1 {
 
 .hero__title {
   position: relative;
-  z-index: 2;
   text-align: center;
   font-weight: 900;
   font-size: 34px;
@@ -260,6 +259,9 @@ h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-bottom: 15px;
 }
 
@@ -271,6 +273,11 @@ h1 {
 
 .document-item__title {
   font-weight: 700;
+}
+
+.document-item:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 992px) {
