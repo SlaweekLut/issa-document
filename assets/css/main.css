@@ -277,8 +277,6 @@ h1 {
 }
 
 .document-item:hover .document-item__title {
-  -webkit-text-decoration-color: #FF006E;
-          text-decoration-color: #FF006E;
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
 }
